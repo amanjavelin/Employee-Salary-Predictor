@@ -3,11 +3,11 @@ import pandas as pd
 import joblib
 
 # Load model
-model = joblib.load('/Users/amanjavelin/Documents/AICTE Internships/Edunet IBM Skillsbuild/Employee Salary Prediction App/model/SalaryClassifier.pkl')
+model = joblib.load('model/SalaryClassifier.pkl')
 # Load default values
-default_values = joblib.load('/Users/amanjavelin/Documents/AICTE Internships/Edunet IBM Skillsbuild/Employee Salary Prediction App/model/DefaultValues.pkl')
+default_values = joblib.load('model/DefaultValues.pkl')
 # Load label encoder
-encoder = joblib.load('/Users/amanjavelin/Documents/AICTE Internships/Edunet IBM Skillsbuild/Employee Salary Prediction App/model/LabelEncoder.pkl')    
+encoder = joblib.load('model/LabelEncoder.pkl')    
 
 st.set_page_config(page_title="Employee Salary Prediction", layout="centered")
 
