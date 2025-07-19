@@ -5,7 +5,7 @@ import joblib
 # Load model
 model = joblib.load('model/SalaryClassifier.pkl')
 # Load default values
-default_values = joblib.load('model/Default Values.pkl')
+default_values = joblib.load('model/DefaultValues.pkl')
 # Load label encoder
 encoder = joblib.load('model/LabelEncoder.pkl')    
 
