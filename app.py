@@ -54,8 +54,6 @@ with col3:
 # -------------------- PREDICTION --------------------
 if st.button("Predict Salary Class"):
 
-    # Prepare input with default values
-    input_data = default_values.copy()
     input_data.update({
         'Age': age,
         'Gender': gender,
