@@ -36,23 +36,20 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     age = st.slider("Age", 18, 60, 30)
-    years_at_company = st.slider("Years at Company", 0, 40, 5)
-    promotions = st.slider("Number of Promotions", 0, 10, 1)
+    gender = st.selectbox("Gender", ["Male", "Female"])
+    education_level = st.selectbox("Education Level", ["High School", "Associate Degree", "Bachelor’s Degree", "Master’s Degree", "PhD"])
+    
 
 with col2:
-    gender = st.selectbox("Gender", ["Male", "Female"])
-    education_level = st.selectbox(
-        "Education Level",
-        ["High School", "Associate Degree", "Bachelor’s Degree", "Master’s Degree", "PhD"]
-    )
+    job_role = st.selectbox("Job Role", ['Technology', 'Healthcare', 'Education', 'Media', 'Finance'])
     job_level = st.selectbox("Job Level", ["Entry", "Mid", "Senior"])
+    years_at_company = st.slider("Years at Company", 1, 60, 5)
 
 with col3:
-    job_role = st.selectbox("Job Role", ["Technology", "Healthcare", "Education", "Media", "Finance"])
     overtime = st.selectbox("Overtime", ["Yes", "No"])
-    performance_rating = st.selectbox(
-        "Performance Rating", ["Low", "Below Average", "Average", "High"]
-    )
+    overtime = 1 if overtime == "Yes" else 0
+    performance_rating = st.selectbox("Performance Rating", ['Low', 'Below Average', 'Average', 'High'])
+
 
 # -------------------- PREDICTION --------------------
 if st.button("Predict Salary Class"):
