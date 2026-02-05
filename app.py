@@ -54,35 +54,29 @@ with col3:
 # -------------------- PREDICTION --------------------
 if st.button("Predict Salary Class"):
 
-    input_df = pd.DataFrame([{
-        "Age": age,
-        "Years at Company": years_at_company,
-        "Number of Promotions": promotions,
-        "Company Tenure": years_at_company,   # reasonable proxy
-        "Overtime": 1 if overtime == "Yes" else 0,
-        "Remote Work": 0,
-        "Leadership Opportunities": 0,
-        "Innovation Opportunities": 0,
-        "Education Level": education_level,
-        "Job Level": job_level,
-        "Work-Life Balance": "Good",
-        "Job Satisfaction": "Medium",
-        "Performance Rating": performance_rating,
-        "Company Reputation": "Good",
-        "Employee Recognition": "Medium",
-        "Gender": gender,
-        "Job Role": job_role,
-        "Marital Status": "Single",
-        "Company Size": "Medium"
-    }])
+    # Prepare input with default values
+    input_data = default_values.copy()
+    input_data.update({
+        'Age': age,
+        'Gender': gender,
+        'Education Level': education_level,
+        'Job Level': job_level,
+        'Job Role': job_role,
+        'Years at Company': years_at_company,
+        'Overtime': overtime,
+        'Performance Rating': performance_rating,
+    })
+
+    input_df = pd.DataFrame([input_data])
 
     try:
-        prediction = model.predict(input_df)[0]
+        prediction = model.predict(input_df)
+        salary_class = encoder.inverse_transform(prediction)[0]
 
-        if prediction == 1:
-            st.success("Predicted Salary Class: **High (> USD 7,000)**")
+        if salary_class == 'High':
+            st.success("The predicted salary class is **High** (more than USD 7,000).")
         else:
-            st.warning("Predicted Salary Class: **Low (< USD 7,000)**")
+            st.warning("The predicted salary class is **Low** (less than USD 7,000).")
 
     except Exception as e:
         st.error(f"Prediction failed: {e}")
