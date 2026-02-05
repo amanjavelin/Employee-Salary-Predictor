@@ -2,12 +2,14 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# Load model
-model = joblib.load('/model/SalaryClassifier.pkl')
-# Load default values
-default_values = joblib.load('/model/DefaultValues.pkl')
-# Load label encoder
-encoder = joblib.load('/model/LabelEncoder.pkl')    
+@st.cache_resource
+def load_artifacts():
+    model = joblib.load(MODEL_DIR / "SalaryClassifier.pkl")
+    default_values = joblib.load(MODEL_DIR / "Default Values.pkl")
+    encoder = joblib.load(MODEL_DIR / "LabelEncoder.pkl")
+    return model, default_values, encoder
+
+model, default_values, encoder = load_artifacts()   
 
 st.set_page_config(page_title="Employee Salary Prediction", layout="centered")
 
