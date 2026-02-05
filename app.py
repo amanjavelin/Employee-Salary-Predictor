@@ -2,35 +2,33 @@ import streamlit as st
 import pandas as pd
 import joblib
 
-# -------------------- PAGE CONFIG --------------------
+# Load model
+model = joblib.load('/model/SalaryClassifier.pkl')
+# Load default values
+default_values = joblib.load('/model/DefaultValues.pkl')
+# Load label encoder
+encoder = joblib.load('/model/LabelEncoder.pkl')    
+
 st.set_page_config(page_title="Employee Salary Prediction", layout="centered")
 
-# -------------------- LOAD PIPELINE --------------------
-model = joblib.load("model/salary_pipeline.pkl")
+# App title
+st.title(" Employee Salary Class Predictor")
+st.markdown("Predict if an employee's salary is **High** (> USD 7000) or **Low** (< USD 7000) based on selected features.")
 
-# -------------------- APP TITLE --------------------
-st.title("Employee Salary Class Predictor")
-st.markdown(
-    "Predict whether an employee's salary is **High** (> USD 7,000) "
-    "or **Low** (< USD 7,000) based on their details."
-)
-
-# -------------------- SIDEBAR --------------------
-st.sidebar.title("Model Info")
+# Sidebar
+# Sidebar - About Section
+st.sidebar.title('Model Info')
 st.sidebar.markdown("""
-This is an **Employee Salary Predictor** built using a  
-**scikit-learn Pipeline** with preprocessing and classification.
-
-- Model: Random Forest (Pipeline-based)
-- Tech: Scikit-learn, Pandas
-- UI: Streamlit
+This is an **Employee Salary Predictor** that uses Light GBM Classifier to classify an employee's salary based on their details.
+- Built with Scikit-learn & Pandas  
+- UI by Streamlit  
 """)
 st.sidebar.markdown("**Developed by:** Aman Kumar")
 st.sidebar.markdown("---")
-st.sidebar.info("Fill the details and click **Predict**.")
+st.sidebar.info("Modify the inputs and click **Predict** to see results.")
 
-# -------------------- INPUT FORM --------------------
-st.subheader("Enter Employee Details")
+# Input form
+st.subheader(" Enter Employee Details")
 
 col1, col2, col3 = st.columns(3)
 
@@ -50,11 +48,11 @@ with col3:
     overtime = 1 if overtime == "Yes" else 0
     performance_rating = st.selectbox("Performance Rating", ['Low', 'Below Average', 'Average', 'High'])
 
+# Make prediction
+if st.button(" Predict Salary Class"):
 
-# -------------------- PREDICTION --------------------
-input_data = {}
-if st.button("Predict Salary Class"):
-
+    # Prepare input with default values
+    input_data = default_values.copy()
     input_data.update({
         'Age': age,
         'Gender': gender,
@@ -79,3 +77,5 @@ if st.button("Predict Salary Class"):
 
     except Exception as e:
         st.error(f"Prediction failed: {e}")
+
+
