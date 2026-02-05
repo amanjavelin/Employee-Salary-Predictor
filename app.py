@@ -52,6 +52,7 @@ with col3:
 
 
 # -------------------- PREDICTION --------------------
+input_data = {}
 if st.button("Predict Salary Class"):
 
     input_data.update({
