@@ -6,7 +6,7 @@ import joblib
 st.set_page_config(page_title="Employee Salary Prediction", layout="centered")
 
 # -------------------- LOAD PIPELINE --------------------
-model = joblib.load("salary_pipeline.pkl")
+model = joblib.load("model/salary_pipeline.pkl")
 
 # -------------------- APP TITLE --------------------
 st.title("Employee Salary Class Predictor")
