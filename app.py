@@ -1,15 +1,22 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from pathlib import Path
 
+# ---- paths FIRST ----
+BASE_DIR = Path(__file__).resolve().parent
+MODEL_DIR = BASE_DIR / "model"
+
+# ---- then cache loader ----
 @st.cache_resource
 def load_artifacts():
     model = joblib.load(MODEL_DIR / "SalaryClassifier.pkl")
-    default_values = joblib.load(MODEL_DIR / "Default Values.pkl")
+    default_values = joblib.load(MODEL_DIR / "DefaultValues.pkl")
     encoder = joblib.load(MODEL_DIR / "LabelEncoder.pkl")
     return model, default_values, encoder
 
-model, default_values, encoder = load_artifacts()   
+# ---- then call it ----
+model, default_values, encoder = load_artifacts()
 
 st.set_page_config(page_title="Employee Salary Prediction", layout="centered")
 
