@@ -1,40 +1,30 @@
-♻️ Garbage Classification System
+# 💼 Employee Salary Prediction System
 
-A deep learning–based image classification project that categorizes waste into classes such as Cardboard, Glass, Metal, Paper, Plastic, and Trash using transfer learning with MobileNetV3Large.
+A machine learning application that predicts whether an employee's monthly income falls into a High or Low salary category based on demographic, job-related, and performance features.
 
-The primary focus of this project is building and evaluating an accurate image classification model, along with exploring deployment using Streamlit.
+The project emphasizes feature engineering, preprocessing pipelines, and model experimentation for structured data.
 
 ---
 
 ### Features
-- Built using TensorFlow and Keras
-- Transfer learning with MobileNetV3Large pretrained on ImageNet
-- Image preprocessing and normalization pipeline
-- Multi-class classification of common waste categories
-- Streamlit-based interface for interactive image inference (experimental)
+- Binary classification: High Salary vs Low Salary
+- Custom user input interface with fallback default values
+- Robust preprocessing pipeline using ColumnTransformer
+- Automatic handling of missing inputs using statistical defaults
 
 ---
 
-### Classes
-The model is trained to identify the following categories:
-- Cardboard
-- Glass
-- Metal
-- Paper
-- Plastic
-- Trash
-
----
-
-### Model Architecture
-- Base model: MobileNetV3Large (ImageNet pretrained)
-- Input shape: 224 × 224 × 3
-- Fine-tuned classification head
-- Accuracy achieved during local evaluation: **94.38%**
+### Modeling & Preprocessing
+- Label encoding for target variable
+- Ordinal encoding for ordered categorical features
+- One-hot encoding for nominal categorical features
+- Standard scaling for numerical features
+- Model experimentation with ensemble techniques
 
 ---
 
 ### Tech Stack
-- TensorFlow, Keras
-- NumPy, Pandas
-- Streamlit
+🧠 Modeling: Scikit-learn, XGBoost, LightGBM  
+📊 Data Processing: Pandas, NumPy  
+🌐 Web Interface: Streamlit  
+🔐 Model Serialization: Joblib
