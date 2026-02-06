@@ -1,25 +1,40 @@
-## Employee Salary Prediction App 💼
+♻️ Garbage Classification System
 
-This project is a **machine learning web app** built with **Streamlit** that predicts whether an employee's monthly income is considered **High** or **Low**, based on several features like age, education, job role, performance rating, and more.
+A deep learning–based image classification project that categorizes waste into classes such as Cardboard, Glass, Metal, Paper, Plastic, and Trash using transfer learning with MobileNetV3Large.
 
-It uses a trained classification model with a preprocessing pipeline for accurate predictions. The app allows users to input some or all feature values, while the remaining fields are automatically filled using default values calculated from the training dataset.
+The primary focus of this project is building and evaluating an accurate image classification model, along with exploring deployment using Streamlit.
 
-## Features
+---
 
-- Binary classification: **High Salary** vs **Low Salary**
-- Custom user input form with default values fallback
-- Preprocessing pipeline using `ColumnTransformer`
-- Model trained with:
-  - Label encoding for target variable
-  - Ordinal encoding for ordered categorical features
-  - One-hot encoding for nominal features
-  - Standard scaling for numerical features
-- Auto-fills missing inputs with mean/mode defaults
-- Fully interactive UI built with Streamlit
+### Features
+- Built using TensorFlow and Keras
+- Transfer learning with MobileNetV3Large pretrained on ImageNet
+- Image preprocessing and normalization pipeline
+- Multi-class classification of common waste categories
+- Streamlit-based interface for interactive image inference (experimental)
 
-## Tech Stack
+---
 
-- 🧠 **Modeling**: Scikit-learn, XGBoost, LightGBM
-- 📊 **Data Processing**: Pandas, NumPy
-- 🌐 **Web UI**: Streamlit
-- 🔐 **Serialization**: Joblib
+### Classes
+The model is trained to identify the following categories:
+- Cardboard
+- Glass
+- Metal
+- Paper
+- Plastic
+- Trash
+
+---
+
+### Model Architecture
+- Base model: MobileNetV3Large (ImageNet pretrained)
+- Input shape: 224 × 224 × 3
+- Fine-tuned classification head
+- Accuracy achieved during local evaluation: **94.38%**
+
+---
+
+### Tech Stack
+- TensorFlow, Keras
+- NumPy, Pandas
+- Streamlit
